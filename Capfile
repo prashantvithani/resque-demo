@@ -45,7 +45,7 @@ namespace :db do
         database: #{app_name}_test
         <<: *base
 
-      production:
+      staging:
         database: #{app_name}_production
         <<: *base
     EOF

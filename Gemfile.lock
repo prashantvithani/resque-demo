@@ -259,6 +259,7 @@ DEPENDENCIES
   rake (= 10.4.2)
   redis
   redis-rails
+  resque
   rubocop (~> 0.37.2)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
