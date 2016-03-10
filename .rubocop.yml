@@ -1,0 +1,186 @@
+AllCops:
+  Include:
+    - Rakefile
+    - config.ru
+  Exclude:
+    - db/migrate/*
+    - db/schema.rb
+    - db/seeds.rb
+    - db/migrate/*
+    - Gemfile
+    - Gemfile.lock
+    - bin/*
+    - scripts/*
+  TargetRubyVersion: 2.2
+
+
+#Source of all guidelines and descriptions
+#https://raw.githubusercontent.com/bbatsov/rubocop/master/config/enabled.yml
+
+#################### Style ################################
+Lint/Debugger:
+  Severity: fatal
+
+Style/Documentation:
+  Description: 'Document classes and non-namespace modules.'
+  Enabled: false
+
+Style/StringLiterals:
+  Description: 'Checks if uses of quotes match the configured preference.'
+  Enabled: false
+
+Style/FileName:
+  Exclude:
+    - 'custom-git-hooks/**/*.rb'
+    - 'Gemfile'
+    - 'Rakefile'
+    - '*.gemspec'
+    - 'bin/*'
+
+Style/FirstParameterIndentation:
+  Enabled: false
+
+Style/FormatString:
+  Enabled: false
+
+# There are a number of situations where this makes code less readable or
+# disrupts the visual flow of code.
+Style/GuardClause:
+  Description: 'Enforce the use of Kernel#sprintf, Kernel#format or String#%.'
+  Enabled: false
+
+# We want to allow multi-line lambdas using the `->` syntax which Rubocop
+# doesn't allow. We're also not too worried about people using `lambda` for
+# single-line lambdas either.
+Style/Lambda:
+  Enabled: false
+
+Style/MultilineOperationIndentation:
+  Enabled: false
+
+# Prefer curly braces except for %i/%w/%W, since those return arrays.
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    '%': '{}'
+    '%i': '[]'
+    '%q': '{}'
+    '%Q': '{}'
+    '%r': '{}'
+    '%s': '()'
+    '%w': '[]'
+    '%W': '[]'
+    '%x': '{}'
+
+Style/PredicateName:
+  Enabled: false
+
+Style/SpaceBeforeFirstArg:
+  Exclude:
+    - '*.gemspec'
+
+Style/RedundantReturn:
+  Description: "Don't use return where it's not required."
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-explicit-return'
+  Enabled: false
+
+Style/RedundantSelf:
+  Description: "Removing self with auto-correct is risky. Can do manually down the line."
+  Enabled: false
+
+Style/AccessorMethodName:
+  Description: "Naming of methods for get_ and set_"
+  Enabled: false
+
+# Offense count: 5
+Style/ClassAndModuleChildren:
+  Description: "Use nested rather than compact style. Flags error on Admins::RegistrationsController"
+  Enabled: false
+
+# Offense count: 47
+Style/ClassVars:
+  Description: "Too many to solve now. Flags error on use of @@"
+  Enabled: false
+
+# Offense count: 15
+Style/Next:
+  Description:  >-
+                  Incorrectly implemented, doesnt take full context. Throws error on loops with each.
+                  https://github.com/bbatsov/rubocop/issues/1238
+  Enabled: false
+
+# Offense count: 4
+# Cop supports --auto-correct.
+Style/Proc:
+  Description: 'Advises to use proc instead of Proc.new. Helpful?'
+  Enabled: false
+
+Style/StringLiteralsInInterpolation:
+  Description: 'Prefer single quoted strings inside interpolation. Unnecessary'
+  Enabled: false
+
+Style/NumericLiterals:
+  Description: 'Add underscores to large numeric literals to improve their readibility. Makes it totally unreadable, imo'
+  Enabled: false
+
+Style/BracesAroundHashParameters:
+  Description: 'Autocorrect fails, causing errors...Enforce braces style around hash parameters.'
+  Enabled: false
+
+#################### Metrics ################################
+
+Metrics/AbcSize:
+  Description: 'A calculated magnitude based on number of assignments, branches, and conditions.'
+  Enabled: false
+
+Metrics/BlockNesting:
+  Description: 'Avoid excessive block nesting'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#three-is-the-number-thou-shalt-count'
+  Enabled: true
+
+Metrics/ClassLength:
+  Description: 'Avoid classes longer than 100 lines of code.'
+  Enabled: false
+  Max: 300
+
+Metrics/CyclomaticComplexity:
+  Description: 'A complexity metric that is strongly correlated to the number of test cases needed to validate a method.'
+  Enabled: true
+
+Metrics/LineLength:
+  Description: 'Limit lines to 80 characters.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#80-character-limits'
+  Enabled: true
+  Max: 200
+
+Metrics/MethodLength:
+  Description: 'Avoid methods longer than 10 lines of code.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#short-methods'
+  Enabled: true
+  Max: 400
+
+Metrics/ParameterLists:
+  Description: 'Avoid parameter lists longer than three or four parameters.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#too-many-params'
+  Enabled: true
+  Max: 6
+
+Metrics/PerceivedComplexity:
+  Description: 'A complexity metric geared towards measuring complexity for a human reader.'
+  Enabled: true
+
+#################### Lint ################################
+
+Lint/AmbiguousRegexpLiteral:
+  Enabled: false
+
+Lint/Void:
+  Description: 'Possible use of operator/literal/variable in void context.'
+  Enabled: false
+
+Lint/StringConversionInInterpolation:
+  Description: "Within string, its invoked on them automatically. No need of to_s"
+  Enabled: false
+
+Lint/RescueException:
+  Description: "Avoid resucing Exception class. Perhaps you meant to resuce Standard Error? Not sure of it being helpful"
+  Enabled: false
