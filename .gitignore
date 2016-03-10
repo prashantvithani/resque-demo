@@ -6,8 +6,49 @@
 
 # Ignore bundler config.
 /.bundle
+/public/assets/*
+
+# Ignore the default SQLite database.
+/db/*.sqlite3
+/db/*.sqlite3-journal
+
+# Ignore npm-logs
+npm-debug.log
 
 # Ignore all logfiles and tempfiles.
-/log/*
-!/log/.keep
+/log/*.log
 /tmp
+*~
+
+# Igonre sceret token.
+/initializers/secret_token.rb
+
+/config/database.yml
+/config/mongoid.yml
+/config/sidekiq.yml
+/vendor/bundle/*
+/vendor/cache/*
+.rvmrc
+/config/deploy/ssh_key_path.rb
+/config/shards.yml
+doc
+/config/database.yml.server
+coverage
+coveragejs
+commit-script.sh
+tags
+.tags
+.tags_sorted_by_file
+**/.DS_Store
+
+.brackets.json
+logfile
+.idea
+/config/mongoid.yml
+.ruby-gemset
+.ruby-version
+dump.rdb
+temp/*
+public/images/*
+
+Guardfile
