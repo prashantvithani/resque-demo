@@ -56,6 +56,6 @@ namespace :db do
 
   desc "Make symlink for database yaml"
   task :symlink do
-    run "ln -nfs /home/deploy/database.yml.server #{latest_release}/config/database.yml"
+    run "ln -nfs #{shared_path}/config/database.yml #{current_path}/config/database.yml"
   end
 end
