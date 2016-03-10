@@ -35,6 +35,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'resque'
 gem 'redis'
 gem 'redis-rails'
+gem 'therubyracer'
 
 group :development do
   # Use Capistrano for deployment

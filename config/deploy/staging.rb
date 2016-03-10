@@ -4,7 +4,7 @@
 # is considered to be the first unless any hosts have the primary
 # property set.  Don't declare `role :all`, it's a meta role.
 
-set :branch, 'staging'
+set :branch, 'master'
 set :stage, :staging
 set :deploy_to, "/var/www/resque_demo"
 set :bundle_without, %w[test].join(' ')
@@ -32,7 +32,7 @@ end
 # Oldmonk
 server '188.166.247.38', user: 'deploy', roles: %w[app db code sidekiq_workers oldmonk]
 # Drogon
-server '128.199.97.198', user: 'deploy', roles: %w[web app code drogon]
+# server '128.199.97.198', user: 'deploy', roles: %w[web app code drogon]
 
 # Custom SSH Options
 # ==================
