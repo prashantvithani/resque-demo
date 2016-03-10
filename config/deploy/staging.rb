@@ -6,7 +6,7 @@
 
 set :branch, 'staging'
 set :stage, :staging
-set :deploy_to, "/var/www/testdash"
+set :deploy_to, "/var/www/resque_demo"
 set :bundle_without, %w[test].join(' ')
 set :default_env, path: "$PATH:/home/deploy/.rvm/rubies/ruby-2.2.2/bin/ruby"
 
