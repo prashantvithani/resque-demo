@@ -1,0 +1,22 @@
+development:
+  host: localhost
+  port: 6379
+  cache_db: 1
+  persistent_db: 0
+  url_prefix: 'redis://127.0.0.1:6379/'
+
+test:
+  host: localhost
+  port: 6379
+  cache_db: 1
+  persistent_db: 0
+  url_prefix: 'redis://localhost:6379/'
+
+# oldmonk Redis
+staging:
+  host: 188.166.247.38
+  port: 6379
+  cache_db: 1
+  persistent_db: 0
+  url_prefix: 'redis://188.166.247.38:6379/'
+  replica_url_prefix: 'redis://128.199.97.198:6379/'

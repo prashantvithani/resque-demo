@@ -20,6 +20,8 @@ default: &default
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: 5
+  username: deploy
+  password: password
 
 development:
   <<: *default
@@ -78,8 +80,11 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
+
+staging:
+  << *default
+  database: resque_demo_staging
+
 production:
   <<: *default
   database: resque_demo_production
-  username: resque_demo
-  password: <%= ENV['RESQUE_DEMO_DATABASE_PASSWORD'] %>
