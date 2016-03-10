@@ -43,18 +43,50 @@ set :puma_threads, [0, 16]
 set :puma_workers, 2
 set :puma_init_active_record, true # Change to false when not using ActiveRecord
 
-role :resque_worker, "app_domain"
-role :resque_scheduler, "app_domain"
-
-set :workers, { "my_queue_name" => 2 }
-
 namespace :deploy do
+  desc 'Restart application'
+  task :restart do
+    on roles(:app), in: :sequence, wait: 5 do
+      invoke 'puma:restart'
+    end
+  end
+
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
       # Here we can do anything such as:
       # within release_path do
       #   execute :rake, 'cache:clear'
       # end
+    end
+  end
+end
+
+namespace :puma do
+  desc 'Create Directories for Puma Pids and Socket'
+  task :make_dirs do
+    on roles(:app) do
+      execute "mkdir #{shared_path}/tmp/sockets -p"
+      execute "mkdir #{shared_path}/tmp/pids -p"
+    end
+  end
+
+  before :start, :make_dirs
+end
+
+namespace :resque_jobs do
+  desc 'Enqueue Resque jobs'
+  task :start do
+    on roles(:app) do
+      execute "rake resque_invoke:enqueue_jobs"
+    end
+  end
+end
+
+namespace :mongo do
+  desc 'Enqueue Resque jobs'
+  task :populate do
+    on roles(:app) do
+      execute "rake mongo_populate:fill_in"
     end
   end
 end
